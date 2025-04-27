@@ -4,7 +4,335 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X Clone: TwiX</title>
-    <link rel="stylesheet" href="login.css">
+    <style>
+        body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 5rem;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+#logo {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+#logo img {
+    width: 80%;
+    /* max-width: 300px; */
+}
+
+#right-section {
+    width: 30%;
+    min-width: 300px;
+}
+
+#heading h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-top: 5rem;
+}
+#heading h5 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+.btn img {
+    width: 20px;
+}
+.google-btn {
+    background-color: white;
+    color: black;
+}
+.apple-btn {
+    background-color: white;
+    color: black;
+}
+.primary-btn {
+    background-color: rgb(29, 161, 242);
+    color: white;
+}
+.secondary-btn {
+    background-color: transparent;
+    color: rgb(29, 161, 242);
+    border: 1px solid gray;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+.divider hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background: gray;
+}
+.divider span {
+    padding: 0 10px;
+    color: gray;
+}
+
+.terms {
+    font-size: 0.8rem;
+    color: gray;
+}
+.terms a {
+    color: rgb(29, 161, 242);
+    text-decoration: none;
+}
+.terms a:hover{
+    text-decoration: underline;
+}
+
+.signin h6 {
+    font-size: 0.9rem;
+    margin: 2.5rem 0 0.5rem;
+}
+.signin a {
+    display: inline-block;
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin: 8rem 0 0 0;
+}
+#footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+#footer a {
+    color: gray;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+#footer a:hover {
+    text-decoration: underline;
+}
+
+#footer div {
+    display: inline;
+}
+#footer div p {
+    color: gray;  
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    #container {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+    }
+    #logo {
+        width: 100%;
+    }
+    #right-section {
+        width: 80%;
+    }
+}
+
+#account-form-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+#account-form {
+    background: #000;
+    padding: 3rem;
+    border-radius: 8px;
+    width: 40%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#account-form h2 {
+    margin-bottom: 15px;
+}
+
+#account-form input {
+    width: 96%;
+    padding: 10px;
+    margin: 13px 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+}
+
+#account-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    background: rgb(29, 161, 242);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#account-form button:hover {
+    background: rgb(20, 140, 220);
+}
+
+#close-form {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+@media screen and (max-width: 600px) {
+    #heading h1 {
+        font-size: 2rem;
+    }
+    #heading h5 {
+        font-size: 1rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    #right-section {
+        width: 90%;
+    }
+    #footer {
+        font-size: 0.8rem;
+    }
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #000; 
+    color: #fff; 
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ff3333; 
+}
+
+#signin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
+}
+
+#signin-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #333; 
+    color: #fff; 
+    font-size: 16px;
+}
+
+#signin-form input:focus {
+    border-color: rgb(20, 140, 220);  
+    outline: none;
+}
+
+#signin-form button {
+    padding: 12px;
+    background-color: rgb(20, 140, 220); 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+#signin-form button:hover {
+    background-color: rgb(20, 140, 220); 
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 20px;
+        width: 90%;
+    }
+}
+
+    </style>
 </head>
 <body>
     <main id="container">
@@ -92,5 +420,125 @@
         </div>
     </footer>
 </body>
+<script>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js"; 
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAkcu5YpQrPhCfkQkTt9C8bzPlKYgEUWSQ",
+    authDomain: "x-clone-tweex.firebaseapp.com",
+    projectId: "x-clone-tweex",
+    storageBucket: "x-clone-tweex.firebasestorage.app",
+    messagingSenderId: "791805456878",
+    appId: "1:791805456878:web:bef131ae6755443a219eff"
+};
+      
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+auth.languageCode = 'en'
+const provider = new GoogleAuthProvider();
+
+const googleSignInButton = document.getElementById('google-sign-in');
+
+googleSignInButton.addEventListener('click', () => {
+    provider.setCustomParameters({
+        prompt: "select_account"  
+    });
+
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        const user = result.user;
+        window.location.href = './TwitterClone.html';
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Error signing in: ", errorMessage);
+    });
+});
+
+const appleSignInButton = document.getElementById('apple-sign-in');
+
+if (appleSignInButton) {
+    appleSignInButton.addEventListener('click', () => {
+        alert("Apple Sign-In is not available. Please sign in with Google.");
+    });
+}
+
+const createAccountButton = document.querySelector('.primary-btn');
+const accountFormContainer = document.getElementById('account-form-container');
+const closeFormButton = document.getElementById('close-form');
+const signupButton = document.getElementById('signup-btn');
+
+createAccountButton.addEventListener('click', () => {
+    accountFormContainer.style.display = 'flex';  
+});
+
+closeFormButton.addEventListener('click', () => {
+    accountFormContainer.style.display = 'none';  
+});
+
+signupButton.addEventListener('click', () => {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (!name || !email || !password) {
+        alert('Please fill in all the fields');
+        return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log("User created:", user);
+
+            updateProfile(user, {
+                displayName: name
+            }).then(() => {
+                window.location.href = './TwitterClone.html';
+            }).catch((error) => {
+                console.error("Error updating profile:", error);
+            });
+
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            console.error("Error creating user:", errorMessage);
+            alert("Error creating account: " + errorMessage);
+        });
+});
+
+const signinModal = document.getElementById("signin-modal");
+const signinBtn = document.getElementById("signin-btn");
+const closeBtn = document.querySelector(".close");
+const signinForm = document.getElementById("signin-form");
+const signinError = document.getElementById("signin-error");
+
+signinBtn.addEventListener("click", () => {
+    signinModal.style.display = "flex"; 
+});
+
+closeBtn.addEventListener("click", () => {
+    signinModal.style.display = "none"; 
+});
+
+signinForm.addEventListener("submit", (event) => {
+    event.preventDefault(); 
+
+    const email = document.getElementById("signIn-email").value;
+    const password = document.getElementById("signIn-password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            window.location.href = "./twitterClone.html"; 
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            console.log("Errorrrr: ", error)
+            signinError.textContent = "Error: " + errorMessage; 
+        });
+});
+</script>
 </html>
-<script src="googleSignUp.js" defer type="module"></script>
